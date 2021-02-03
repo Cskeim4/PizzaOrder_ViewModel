@@ -1,9 +1,6 @@
 package css.pizzaorder;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
@@ -26,11 +23,15 @@ public class MainActivity extends AppCompatActivity {
     EditText textOrder;
     Integer pizzaSize = 1;     // Pizza sizes are 0=Small, 1=Medium, 2=Large, 3=X-large
     final String[] PIZZA_SIZES = {"Small","Medium","Large","X-Large"};
+    MainViewModel mainViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //Connect MainViewModel class to the main activity class, used to access the ViewModel class
+        mainViewModel = new ViewModelProvider(this).get(MainViewModel.class);
 
         seekBarSize = findViewById(R.id.seekBarSize);
         buttonAddToOrder = findViewById(R.id.buttonAddToOrder);
@@ -74,7 +75,15 @@ public class MainActivity extends AppCompatActivity {
         buttonAddToOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("CIS 3334", "Add To Order button clicked");   // log button click for debugging using "CIS 3334" tag
+                //Main View Model will call the method to add to the order
+                //Passing in values to the order method
+                mainViewModel.AddPizzaToOrder(getToppings(), pizzaSize);
+                //Set text area to the order, ViewModel connected to the pizza order
+                textOrder.setText(mainViewModel.GetOrderAsString());
+                //Log is the way to print to the console in android studio
+                Log.d("CIS 3334", "Add To Order button clicked");// log button click for debugging using "CIS 3334" tag
+
+
             }
         });
 
@@ -96,4 +105,5 @@ public class MainActivity extends AppCompatActivity {
         }
         return toppings;
     }
+
 }
