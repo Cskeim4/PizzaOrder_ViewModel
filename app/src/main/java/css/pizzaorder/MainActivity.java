@@ -1,6 +1,8 @@
 package css.pizzaorder;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
@@ -33,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
         //Connect MainViewModel class to the main activity class, used to access the ViewModel class
         mainViewModel = new ViewModelProvider(this).get(MainViewModel.class);
 
+        //Connect components with the xml parts
         seekBarSize = findViewById(R.id.seekBarSize);
         buttonAddToOrder = findViewById(R.id.buttonAddToOrder);
         buttonPlaceOrder = findViewById(R.id.buttonPlaceOrder);
@@ -66,6 +69,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Log.d("CIS 3334", "Place order button clicked");   // log button click for debugging using "CIS 3334" tag
+                //When button is clicked send the order to the placeOrder() method in the MainViewModel Class
+                mainViewModel.placeOrder();
             }
         });
 
@@ -86,6 +91,19 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+        // Create the observer which updates and watches for activity in the UI.
+        final Observer<String> statusObserver = new Observer<String>() {
+            @Override
+            public void onChanged(@Nullable final String newStatus) {
+                // Update the UI, in this case, a TextView.
+                textOrder.setText(textOrder.getText().toString() + "\n" + newStatus );
+            }
+        };
+
+        // Observe the LiveData, passing in this activity as the LifecycleOwner and the observer.
+        //The observer watches for updates and activity being passed in
+        mainViewModel.getOrderStatus().observe(this, statusObserver);
 
     }
 

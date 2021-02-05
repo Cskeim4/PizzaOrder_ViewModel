@@ -82,15 +82,15 @@
         android:layout_height="wrap_content"
         android:checkable="true"
         android:text="Green Peppers"
-        app:layout_constraintStart_toStartOf="@+id/chipPepperoni"
-        app:layout_constraintTop_toBottomOf="@+id/chipPepperoni" />
+        app:layout_constraintStart_toEndOf="@+id/chipChicken"
+        app:layout_constraintTop_toTopOf="@+id/chipChicken" />
 
     <EditText
         android:id="@+id/editTextOrder"
-        android:layout_width="316dp"
-        android:layout_height="305dp"
+        android:layout_width="253dp"
+        android:layout_height="209dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="8dp"
         android:ems="10"
         android:gravity="start|top"
@@ -103,10 +103,10 @@
         android:id="@+id/buttonAddToOrder"
         android:layout_width="170dp"
         android:layout_height="41dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="60dp"
         android:text="Add To Order"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/chipGreenPeppers" />
 
@@ -115,11 +115,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:layout_marginBottom="32dp"
         android:text="Place Order"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextOrder" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextOrder"
+        app:layout_constraintVertical_bias="0.395" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

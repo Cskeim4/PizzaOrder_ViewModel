@@ -16,7 +16,7 @@ public class Pizza {
     /***
      *  Constructor
      * @param topping - this is a string listing all the toppings
-     * @param size - thisis the size of the pizza -- sizes are 0=Small, 1=Medium, 2=Large, 3=X-large
+     * @param size - this is the size of the pizza -- sizes are 0=Small, 1=Medium, 2=Large, 3=X-large
      */
     public Pizza(String topping, Integer size) {
         this.topping = topping;
